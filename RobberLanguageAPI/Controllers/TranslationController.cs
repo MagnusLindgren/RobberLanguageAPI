@@ -12,13 +12,18 @@ namespace RobberLanguageAPI.Controllers
     [ApiController]
     public class TranslationController : ControllerBase
     {
-        public Translation translation { get; set; }
+        //public Translation translation { get; set; }
         
         [HttpPost]
-        public string Post(string text)
+        public Translation Translate(Translation originalSentence)
         {
-            string newtext = TranslateSentence(text);
-            return newtext;
+            var translation = new Translation
+            {
+                OrginalSentence = originalSentence.OrginalSentence,
+                TranslatedSentence = TranslateSentence(originalSentence.OrginalSentence)
+            };
+
+            return translation;
         }
 
         public static string TranslateSentence(string input)
