@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static RobberLanguageAPI.Models;
 
 namespace RobberLanguageAPI.Controllers
 {
@@ -13,16 +12,28 @@ namespace RobberLanguageAPI.Controllers
     [ApiController]
     public class TranslationController : ControllerBase
     {
+        public Translation translation { get; set; }
+        
+        [HttpPost]
+        public string Post(string text)
+        {
+            string newtext = TranslateSentence(text);
+            return newtext;
+        }
+
         public static string TranslateSentence(string input)
         {
+            if (input == null)
+            {
+                return "You must type a word or sentence";
+            }
+
             string translatedSentence = "";
             char[] vowels = { 'a', 'o', 'u', 'å', 'e', 'i', 'y', 'ä', 'ö', ' ' }; 
 
             foreach (char letter in input)
             {
-                for (int i = 0; i < vowels.Length; i++)
-                {
-                    if (letter == vowels[i])
+                    if (Array.IndexOf(vowels, letter) > -1)
                     {
                         translatedSentence += letter;
                     }
@@ -32,9 +43,9 @@ namespace RobberLanguageAPI.Controllers
                     }
                     else
                     {
-                        translatedSentence += letter + 'o' + letter;
+                        translatedSentence += letter + "o" + letter;
                     }
-                }
+
             }
 
             return translatedSentence;
