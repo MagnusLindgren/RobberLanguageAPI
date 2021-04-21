@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RobberLanguageAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/RobberLanguage”.")]
     [ApiController]
     public class TranslationController : ControllerBase
     {
@@ -34,11 +34,11 @@ namespace RobberLanguageAPI.Controllers
             }
 
             string translatedSentence = "";
-            char[] vowels = { 'a', 'o', 'u', 'å', 'e', 'i', 'y', 'ä', 'ö', ' ' }; 
+            char[] skippedChars = { 'a', 'o', 'u', 'å', 'e', 'i', 'y', 'ä', 'ö', ' ', ',', '-' }; 
 
             foreach (char letter in input)
             {
-                    if (Array.IndexOf(vowels, letter) > -1)
+                    if (Array.IndexOf(skippedChars, letter) > -1)
                     {
                         translatedSentence += letter;
                     }
