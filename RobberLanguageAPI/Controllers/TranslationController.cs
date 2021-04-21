@@ -34,7 +34,7 @@ namespace RobberLanguageAPI.Controllers
             }
 
             string translatedSentence = "";
-            char[] skippedChars = { 'a', 'o', 'u', 'å', 'e', 'i', 'y', 'ä', 'ö', ' ', ',', '-' }; 
+            char[] skippedChars = { 'a', 'o', 'u', 'å', 'e', 'i', 'y', 'ä', 'ö', ' ', ',', '-', '.', '!', '?', '"' }; 
 
             foreach (char letter in input)
             {
